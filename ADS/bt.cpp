@@ -6,8 +6,8 @@ class node
 {
 	private:
 		int d;
-		node *left;
-		node *right;
+		node *left=NULL;
+		node *right=NULL;
 		friend class tree;
 	public:
 		void accept();
