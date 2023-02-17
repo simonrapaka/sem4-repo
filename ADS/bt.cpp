@@ -203,7 +203,7 @@ int main()
 	tree t1,t2;
 
 	t1.create();
-	cout << "Breadth First of First Tree: ";
+	cout << "Breadth First Display of First Tree: ";
 	t1.bfs();
 	cout << "\n";
 	t1.mirror();
@@ -212,7 +212,7 @@ int main()
 	cout << "\n";
 	t2.copy(t1);
 	cout << "Copying First Tree into Second Tree...\n";
-	cout << "Breadth First of Second Tree: ";
+	cout << "Breadth First Display of Second Tree: ";
 	t2.bfs();
 	cout << "\n";
 	
