@@ -6,8 +6,8 @@ class node
 {
 	private:
 		int d;
-		node *left=NULL;
-		node *right=NULL;
+		node *left;
+		node *right;
 		friend class tree;
 	public:
 		void accept();
@@ -40,6 +40,8 @@ class tree
 		tree()
 		{
 			root = NULL;
+			root->left = NULL;
+			root->right = NULL;
 		}
 		void create();
 		void inorder_r();
