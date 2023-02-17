@@ -33,23 +33,6 @@ void node::swap()
 	right = temp;
 }
 
-class tree
-{
-	node *root;
-	public:
-		tree()
-		{
-			root = NULL;
-		}
-		void create();
-		void inorder_r();
-		void inorder_r(node *temp);
-		void bfs();
-		void mirror();
-		void copy(tree t);
-		node *copy(node *t);
-};
-
 class queue
 {
 	private:
@@ -74,6 +57,24 @@ node *queue::del()
 {
 	return q[++f];
 }
+
+class tree
+{
+	node *root;
+	public:
+		tree()
+		{
+			root = NULL;
+		}
+		void create();
+		void inorder_r();
+		void inorder_r(node *temp);
+		void bfs();
+		void mirror();
+		void copy(tree t);
+		node *copy(node *t);
+};
+
 
 int queue::isnotempty()
 {
