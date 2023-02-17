@@ -58,6 +58,12 @@ node *queue::del()
 	return q[++f];
 }
 
+int queue::isnotempty()
+{
+	if(f!=r) return 1;
+	else return 0;
+}
+
 class tree
 {
 	node *root;
@@ -74,13 +80,6 @@ class tree
 		void copy(tree t);
 		node *copy(node *t);
 };
-
-
-int queue::isnotempty()
-{
-	if(f!=r) return 1;
-	else return 0;
-}
 
 void tree::create()
 {
