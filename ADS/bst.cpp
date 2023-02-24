@@ -291,9 +291,9 @@ void tree::del()
 				else
 				{
 					if(temp->left==NULL)
-						par->left = temp->right;
+						par->right = temp->right;
 					else
-						par->left = temp->left;
+						par->right = temp->left;
 				}
 				delete temp;
 				cout << "Node Deleted Successfully";
