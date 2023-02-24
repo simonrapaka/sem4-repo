@@ -79,6 +79,8 @@ class tree
 		void mirror();
 		void copy(tree t);
 		node *copy(node *t);
+		void search_nr();
+		void del();
 };
 
 void tree::create()
@@ -198,6 +200,116 @@ node *tree::copy(node *t)
 	return temp;
 }
 
+void tree::search_nr()
+{
+	int f=1,s;
+	node *temp = root;
+
+	cout << "Enter data to be searched: ";
+	cin >> s;
+
+	while(f)
+	{
+		if(temp==NULL) break;
+		if(s==temp->d)
+		{
+			f=0;
+			break;
+		}
+
+		else if(s < temp->d)
+			temp = temp->left;
+		else
+			temp = temp->right;
+	}
+	if(!f)
+		cout << "Found!\n";
+	else if(f)
+		cout << "Not Found\n";
+}
+
+void tree::del()
+{
+	int f=1,s;
+	node *temp = root,*par;
+
+	cout << "Enter data to be deleted: ";
+	cin >> s;
+
+	while(f)
+	{
+		if(temp==NULL) break;
+		if(s==temp->d)
+		{
+			f=0;
+			break;
+		}
+
+		else if(s < temp->d)
+		{
+			par = temp;
+			temp = temp->left;
+		}
+		else
+		{
+			par = temp;
+			temp = temp->right;
+		}
+	}
+	if(!f)
+	{
+		if(temp!=root)
+		{
+			int d;
+			node *curr;
+
+			if(temp->left==NULL && temp->right==NULL) d=1;
+			else if((temp->left==NULL && temp->right!=NULL) || (temp->left!=NULL && temp->right==NULL)) d=2;
+			else if(temp->left!=NULL && temp->right!=NULL) d=3;
+			else d=4;
+
+			switch (d)
+			{
+			case 1:// leaf node
+				if(par->left==temp)
+					par->left = NULL;
+				else
+					par->right = NULL;
+
+				delete temp;
+				cout << "Node Successfully Deleted";
+				break;
+			
+			case 2://node with one child
+				if(par->left==temp)
+				{
+					if(temp->left==NULL)
+						par->left = temp->right;
+					else
+						par->left = temp->left;
+				}
+				else
+				{
+					if(temp->left==NULL)
+						par->left = temp->right;
+					else
+						par->left = temp->left;
+				}
+				delete temp;
+				cout << "Node Deleted Successfully";
+				break;
+			case 3:
+				
+				break;
+			default:
+				break;
+			}	
+		}
+	}
+	else
+		cout << "Node not found";
+}
+
 int main()
 {
 	tree t1,t2;
@@ -206,14 +318,9 @@ int main()
 	cout << "Breadth First Display of First Tree: ";
 	t1.bfs();
 	cout << "\n";
-	t1.mirror();
-	cout << "First Tree Mirrored: ";
+	t1.del();
+	cout << "\nBreadth First Display: ";
 	t1.bfs();
-	cout << "\n";
-	t2.copy(t1);
-	cout << "Copying First Tree into Second Tree...\n";
-	cout << "Breadth First Display of Second Tree: ";
-	t2.bfs();
 	cout << "\n";
 	
 	return 0;
