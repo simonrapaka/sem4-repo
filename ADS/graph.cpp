@@ -11,41 +11,6 @@ class gnode
 	friend class graph;
 };
 
-class graph
-{
-	private:
-		gnode *head[20];
-		int n;
-		int visit[20] = {0};
-	public:
-		graph()
-		{
-			cout << "Enter no of users(max 20): ";
-			cin >> n;
-			for(int i=0; i < n;i++)
-			{
-				head[i] = new gnode;
-				head[i]->id = i;
-				cout << "Enter name: ";
-				cin >> head[i]->name;
-				head[i]->next = NULL;
-			}
-
-			cout << "Name    Assigned Id\n-------------------\n";
-			for(int i=0; i < n;i++)
-			{
-				char d[20];
-				sprintf(d,"%-9s%6d\n",head[i]->name.c_str(), i);
-				cout << d;
-			}
-			cout << "----------------------\n";
-		}
-		void create();
-		void display();
-		void dfs_r();
-		void dfs_r(int v);
-		void dfs_nr();
-};
 
 class queue
 {
@@ -105,6 +70,42 @@ int stack::isempty()
 	else
 		return 0;
 }
+
+class graph
+{
+	private:
+		gnode *head[20];
+		int n;
+		int visit[20] = {0};
+	public:
+		graph()
+		{
+			cout << "Enter no of users(max 20): ";
+			cin >> n;
+			for(int i=0; i < n;i++)
+			{
+				head[i] = new gnode;
+				head[i]->id = i;
+				cout << "Enter name: ";
+				cin >> head[i]->name;
+				head[i]->next = NULL;
+			}
+
+			cout << "Name    Assigned Id\n-------------------\n";
+			for(int i=0; i < n;i++)
+			{
+				char d[20];
+				sprintf(d,"%-9s%6d\n",head[i]->name.c_str(), i);
+				cout << d;
+			}
+			cout << "----------------------\n";
+		}
+		void create();
+		void display();
+		void dfs_r();
+		void dfs_r(int v);
+		void dfs_nr();
+};
 
 void graph::create()
 {
@@ -217,7 +218,6 @@ void graph::dfs_nr()
 		}
 	}
 }
-
 
 int main()
 {
