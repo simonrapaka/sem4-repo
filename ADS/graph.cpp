@@ -16,6 +16,7 @@ class graph
 	private:
 		gnode *head[20];
 		int n;
+		int visit[20] = {0};
 	public:
 		graph()
 		{
@@ -43,7 +44,67 @@ class graph
 		void display();
 		void dfs_r();
 		void dfs_r(int v);
+		void dfs_nr();
 };
+
+class queue
+{
+private:
+	int q[20];
+	int front,rear;
+public:
+	queue();
+	void ins(int e);
+	int del();
+};
+
+queue::queue()
+{
+	front = rear = -1;
+}
+
+void queue::ins(int e)
+{
+	q[++rear] = e;
+}
+
+int queue::del()
+{
+	return q[front++];
+}
+
+class stack
+{
+	private:
+		int s[20];
+		int top;
+	public:
+		stack()
+		{
+			top = -1;
+		}
+		void push(int a);
+		int pop();
+		int isempty();
+};
+
+void stack::push(int a)
+{
+	s[++top] = a;
+}
+
+int stack::pop()
+{
+	return s[top--];
+}
+
+int stack::isempty()
+{
+	if(top==-1)
+		return 1;
+	else
+		return 0;
+}
 
 void graph::create()
 {
@@ -97,7 +158,6 @@ void graph::display()
 
 void graph::dfs_r()
 {
-	int visited[n] = {0};
 	int i;
 
 	cout << "Enter id of user to start search: ";
@@ -108,10 +168,56 @@ void graph::dfs_r()
 	dfs_r(i);
 }
 
-void dfs_r(int v)
+void graph::dfs_r(int v)
 {
-	
+	cout << v << ": " << head[v]->name;
+	visit[v] = 1;
+
+	gnode *temp = head[v]->next;
+	cout << "\nFriends:\n";
+	while ((temp != NULL))
+	{
+		int j = temp->id;
+		cout << j << ": " << head[j]->name << "\n";
+		
+		if(!visit[j])
+			dfs_r(j);
+
+		temp = temp->next;
+	}
 }
+
+void graph::dfs_nr()
+{
+	int v;
+	cout << "Enter starting vertex: ";
+	cin >> v;
+
+	visit[v]=1;
+
+	stack s;
+	s.push(v);
+
+	while(!s.isempty())
+	{
+		int a=s.pop();
+	
+		cout<<head[a]->id<<':'<<head[a]->name<<endl;
+	
+		gnode *temp=head[a]->next;
+
+		while(temp!=NULL)
+		{
+			if(visit[temp->id]!=1)
+			{
+				s.push(temp->id);
+				visit[temp->id]=1;
+			}
+			temp=temp->next;
+		}
+	}
+}
+
 
 int main()
 {
@@ -120,6 +226,7 @@ int main()
 	cout << "\n";
 	g1.display();
 	cout << "\n";
+	g1.dfs_r();
 
 	return 0;
 }
