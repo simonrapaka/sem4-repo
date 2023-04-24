@@ -77,8 +77,5 @@ public class StudentIO {
 		pr.close();
 		br.close();
 		in.close();
-
-		Runtime c = Runtime.getRuntime();
-		c.exec("cmd /c notepad d.txt");
 	}
 }
