@@ -70,7 +70,7 @@ public class StudentIO {
 			if(avg >= 60 && avg < 70) g = "D";
 			if(avg < 60) g = "Fail";
 
-			pr.printf("| %4s | %-30s | %7s | %11s | %5s |\n", Integer.toString(i+1),s.name,Integer.toString(s.rno),Integer.toString(avg*5),g);
+			pr.printf("| %4d | %-30s | %7d | %11d | %5s |\n", i+1,s.name,s.rno,avg*5,g);
 			for(int j=0;j<73;j++) pr.printf("-");
 			pr.printf("%n");
 		}
